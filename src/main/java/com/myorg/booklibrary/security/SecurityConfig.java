@@ -5,10 +5,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+// import org.springframework.web.servlet.config.annotation.CorsRegistry;
+// import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.myorg.booklibrary.constants.Constants;
 import com.myorg.booklibrary.constants.SecurityConstants;
 import com.myorg.booklibrary.security.filter.AuthenticationFilter;
+import com.myorg.booklibrary.security.filter.CustomCORSFilter;
 import com.myorg.booklibrary.security.filter.ExceptionHandlerFilter;
 import com.myorg.booklibrary.security.filter.JWTAuthorizationFilter;
 import com.myorg.booklibrary.security.manager.CustomAuthenticationManager;
@@ -35,6 +38,7 @@ public class SecurityConfig {
                 .antMatchers("/admin/**").hasRole(Constants.admin)
                 .anyRequest().authenticated()
                 .and()
+                .addFilterBefore(new CustomCORSFilter(), AuthenticationFilter.class)
                 .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
                 .addFilter(authenticationFilter)
                 .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)

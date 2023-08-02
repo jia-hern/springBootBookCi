@@ -76,8 +76,8 @@ public class ReaderController {
 
     @Operation(summary = "Get all books of a reader", description = "Provides a list of all books by reader id")
     @ApiResponse(responseCode = "200", description = "Successful retrieval of allbooks by reader id", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Reader.class))))
-    @GetMapping(value = "/all/{bookId}/book", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Book>> getBooksOfReader(@PathVariable Long bookId) {
-        return new ResponseEntity<>(readerService.getBooksOfReader(bookId), HttpStatus.OK);
+    @GetMapping(value = "/all/{readerId}/book", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Book>> getBooksOfReader(@PathVariable Long readerId) {
+        return new ResponseEntity<>(readerService.getBooksOfReader(readerId), HttpStatus.OK);
     }
 }
