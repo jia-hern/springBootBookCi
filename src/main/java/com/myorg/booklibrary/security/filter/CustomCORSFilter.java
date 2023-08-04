@@ -24,16 +24,6 @@ public class CustomCORSFilter extends OncePerRequestFilter {
                 +
                 " Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, X-Requested-With");
 
-        // System.out.println("cors filter called");
-
-        // ArrayList<String> headerNames = (ArrayList<String>)
-        // response.getHeaderNames();
-        // if (headerNames != null) {
-        // for (String s : headerNames) {
-        // System.out.println("value= " + s);
-        // }
-        // }
-
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {

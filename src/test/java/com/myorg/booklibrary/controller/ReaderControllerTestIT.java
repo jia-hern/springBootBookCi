@@ -202,7 +202,6 @@ public class ReaderControllerTestIT {
                 .andExpect(jsonPath("$.size()").value(5));
     }
 
-    // stop here
     @DisplayName("Test get all books based on reader id - no jwt")
     @Test
     public void validGetAllBooksByReaderIdTest_noJwt_returnsForbidden() throws Exception {
